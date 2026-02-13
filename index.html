@@ -130,6 +130,14 @@
       font-size: 14px;
       text-align: center;
     }
+
+    /* Hidden YouTube player */
+    .ytplayer {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: none;
+    }
   </style>
 </head>
 
@@ -160,7 +168,7 @@
 
     <div class="polaroid">
       <img src="IMG-20260204-WA0099.jpg" />
-      <div class="caption">My favorite person </div>
+      <div class="caption">My favorite person 🥺</div>
     </div>
 
     <div class="polaroid">
@@ -173,10 +181,13 @@
       <div class="caption">Forever us ♾️</div>
     </div>
 
-    <!-- MUSIC -->
-    <audio id="music" loop>
-      <source src="lovers.mp3" type="audio/mpeg" />
-    </audio>
+    <!-- YouTube Music Embed -->
+    <iframe
+      id="ytplayer"
+      class="ytplayer"
+      src=""
+      allow="autoplay"
+    ></iframe>
 
   </div>
 
@@ -214,20 +225,20 @@
         document.body.appendChild(heart);
       }
 
-      // Start slideshow after hearts
+      // Start slideshow
       setTimeout(() => {
         document.getElementById("main").style.display = "none";
         slideshow.style.display = "flex";
 
-        // Play music
-        const music = document.getElementById("music");
-        music.play();
+        // 🎧 YouTube autoplay (Lovers – Anna of the North)
+        document.getElementById("ytplayer").src =
+          "https://www.youtube.com/embed/6d8A8oZqB7E?autoplay=1&loop=1&playlist=6d8A8oZqB7E";
 
         startSlideshow();
       }, 3500);
     });
 
-    // Slideshow logic (SLOWER)
+    // Slideshow logic (slow romantic timing)
     let index = 0;
 
     function startSlideshow() {
