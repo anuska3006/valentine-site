@@ -5,6 +5,9 @@
   <title>Be My Valentine 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- YouTube API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
   <style>
     body {
       margin: 0;
@@ -132,11 +135,10 @@
     }
 
     /* Hidden YouTube player */
-    .ytplayer {
+    #player {
       position: absolute;
       width: 0;
       height: 0;
-      border: none;
     }
   </style>
 </head>
@@ -181,17 +183,27 @@
       <div class="caption">Forever us ♾️</div>
     </div>
 
-    <!-- YouTube Music Embed -->
-    <iframe
-      id="ytplayer"
-      class="ytplayer"
-      src=""
-      allow="autoplay"
-    ></iframe>
+    <!-- YouTube Player -->
+    <div id="player"></div>
 
   </div>
 
   <script>
+    let player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player("player", {
+        height: "0",
+        width: "0",
+        videoId: "ZwOkTTjLauY", // Lovers – Anna of the North
+        playerVars: {
+          autoplay: 0,
+          loop: 1,
+          playlist: "ZwOkTTjLauY"
+        }
+      });
+    }
+
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const gif = document.getElementById("gif");
@@ -230,9 +242,10 @@
         document.getElementById("main").style.display = "none";
         slideshow.style.display = "flex";
 
-        // 🎧 YouTube autoplay (Lovers – Anna of the North)
-        document.getElementById("ytplayer").src =
-          "https://www.youtube.com/watch?v=ZwOkTTjLauY&list=RDZwOkTTjLauY&start_radio=1";
+        // Play YouTube music
+        if (player) {
+          player.playVideo();
+        }
 
         startSlideshow();
       }, 3500);
@@ -256,4 +269,3 @@
 
 </body>
 </html>
-
