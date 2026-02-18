@@ -5,9 +5,6 @@
   <title>Be My Valentine 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- YouTube API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-
   <style>
     body {
       margin: 0;
@@ -135,10 +132,11 @@
     }
 
     /* Hidden YouTube player */
-    #player {
+    .ytplayer {
       position: absolute;
       width: 0;
       height: 0;
+      border: none;
     }
   </style>
 </head>
@@ -164,46 +162,36 @@
   <div class="slideshow" id="slideshow">
 
     <div class="polaroid active">
-      <img src="IMG-20260204-WA0012.jpg" />
+      <img src="img4.jpg" />
       <div class="caption">Us 💕</div>
     </div>
 
     <div class="polaroid">
-      <img src="IMG-20260204-WA0099.jpg" />
+      <img src="img3.jpg" />
       <div class="caption">My favorite person 🥺</div>
     </div>
 
     <div class="polaroid">
-      <img src="IMG-20260204-WA0097.jpg" />
+      <img src="img2.jpg" />
       <div class="caption">Cutest memory 💖</div>
     </div>
 
     <div class="polaroid">
-      <img src="IMG-20260204-WA0085.jpg" />
+      <img src="img1.jpg" />
       <div class="caption">Forever us ♾️</div>
     </div>
 
-    <!-- YouTube Player -->
-    <div id="player"></div>
+    <!-- YouTube Music Embed -->
+    <iframe
+      id="ytplayer"
+      class="ytplayer"
+      src=""
+      allow="autoplay"
+    ></iframe>
 
   </div>
 
   <script>
-    let player;
-
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player("player", {
-        height: "0",
-        width: "0",
-        videoId: "ZwOkTTjLauY", // Lovers – Anna of the North
-        playerVars: {
-          autoplay: 0,
-          loop: 1,
-          playlist: "ZwOkTTjLauY"
-        }
-      });
-    }
-
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const gif = document.getElementById("gif");
@@ -242,10 +230,9 @@
         document.getElementById("main").style.display = "none";
         slideshow.style.display = "flex";
 
-        // Play YouTube music
-        if (player) {
-          player.playVideo();
-        }
+        // 🎧 YouTube autoplay (Lovers – Anna of the North)
+        document.getElementById("ytplayer").src =
+          "https://www.youtube.com/embed/6d8A8oZqB7E?autoplay=1&loop=1&playlist=6d8A8oZqB7E";
 
         startSlideshow();
       }, 3500);
